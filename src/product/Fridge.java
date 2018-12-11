@@ -1,4 +1,4 @@
-package storeManager;
+package product;
 
 public class Fridge extends Product {
 

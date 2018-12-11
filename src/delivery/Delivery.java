@@ -1,4 +1,4 @@
-package storeManager;
+package delivery;
 
 public interface Delivery {
 	
@@ -7,4 +7,10 @@ public interface Delivery {
 	 * @return The delivery price
 	 */
 	double getPrice();
+	
+	/**
+	 * Returns the delivery information
+	 * @return The delivery information
+	 */
+	String getInfo();
 }

@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import storeManager.*;
+import delivery.Delivery;
+import delivery.RelayDelivery;
 
 class RelayDeliveryTest {
 

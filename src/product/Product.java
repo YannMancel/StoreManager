@@ -1,4 +1,6 @@
-package storeManager;
+package product;
+
+import storeManager.Bill;
 
 public class Product {
 

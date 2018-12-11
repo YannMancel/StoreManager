@@ -1,4 +1,4 @@
-package storeManager;
+package delivery;
 
 public class ExpressDelivery implements Delivery {
 
@@ -19,6 +19,11 @@ public class ExpressDelivery implements Delivery {
 			return 6.99;
 		else
 			return 9.99;
+	}
+	
+	@Override
+	public String getInfo() {		
+		return "Livraison à domicile express";
 	}
 	
 	//---------------------------------------------------------------------------------------------
