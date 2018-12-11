@@ -1,5 +1,6 @@
 package storeManager;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Bill {
@@ -8,10 +9,10 @@ public class Bill {
 	 * Bill constructor with an argument of Customer type
 	 * @param customer The Customer of the bill
 	 */
-	public Bill(Customer customer) {
+	public Bill(Customer customer, Delivery delivery) {
 		this.customer = customer;
-		
-		this.products = null;
+		this.products = new HashMap<Product, Integer>();
+		this.delivery = delivery;
 	}	
 	
 	//---------------------------------------------------------------------------------------------
@@ -39,10 +40,19 @@ public class Bill {
 	 */
 	public Map<Product, Integer> getProducts() {
 		return this.products;
-	}	
+	}
+	
+	/**
+	 * Returns a Delivery which corresponds to the delivery type
+	 * @return The delivery
+	 */
+	public Delivery getDelivery() {
+		return this.delivery;
+	}
 	
 	//---------------------------------------------------------------------------------------------
 	
 	private Customer customer;
 	private Map<Product, Integer> products;
+	private Delivery delivery;
 }
