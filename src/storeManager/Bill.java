@@ -56,9 +56,13 @@ public class Bill {
 	
 	/**
 	 * Generates the bill summary
-	 * @param writer 
+	 * @param writer Bill creation and writing in bill file
+	 * @throws NoProductInBillException Throws if none of product is present in the bill
 	 */
-	public void generate(Writer writer) {
+	public void generate(Writer writer) throws NoProductInBillException {
+		
+		// Throws an NoProductInBillException if none of product is present in the bill
+		if (this.products.isEmpty()) throw new NoProductInBillException("Aucun produit dans la facture");
 		
 	    writer.start();
 

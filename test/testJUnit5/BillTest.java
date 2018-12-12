@@ -14,6 +14,7 @@ import product.Television;
 
 import storeManager.Bill;
 import storeManager.Customer;
+import storeManager.NoProductInBillException;
 
 import write.Writer;
 
@@ -31,6 +32,15 @@ class BillTest {
 		bill.generate(writerMock);
 		
         assertEquals(20, output.split("\n").length);		
+	}
+	
+	@Test
+	@DisplayName("generate an empty bill")
+	final void testGenerateEmptyBill() {
+		
+		Bill bill = new Bill(customer, lowCostRelayDelivery);
+		
+		assertThrows(NoProductInBillException.class, () -> bill.generate(writerMock));	
 	}
 	
 	@Test

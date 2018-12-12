@@ -9,6 +9,7 @@ import product.Television;
 
 import storeManager.Bill;
 import storeManager.Customer;
+import storeManager.NoProductInBillException;
 
 import write.FileWriter;
 
@@ -34,7 +35,11 @@ public class Main {
 		bill.addProduct(tv,     1);
 		bill.addProduct(fridge, 1);
 		
-		
-		bill.generate(new FileWriter("Other/Bill.txt"));
+		try {
+			bill.generate(new FileWriter("Other/Bill.txt"));
+		}
+		catch(NoProductInBillException e) {
+			System.err.println(e.getMessage());
+		}
 	}
 }
