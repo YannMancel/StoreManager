@@ -12,16 +12,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ProductDAO;
 import delivery.*;
 import product.*;
 import storeManager.*;
 import write.Writer;
+
+// Connection: http://localhost:8080/bill
 
 public class BillServlet extends HttpServlet {
 	
     @Override
     public void init() throws ServletException {
         
+    	/* Without a database
 		// Products
 	    Product cafe   = new Product("Philips HD7866/61",        "Philips SENSEO Quadrante, Noir - 1 ou 2 tasses",  79.99);
 	    Product tv     = new Television("TV Samsung UE49MU6292", "Smart TV LED incurvée 49\"",                     599,     49, "LED");
@@ -30,6 +34,10 @@ public class BillServlet extends HttpServlet {
 	    this.products.add(cafe);
 	    this.products.add(tv);
 	    this.products.add(fridge);
+	    */
+    	
+    	// With a database in MySQL
+        this.products = new ProductDAO().getAll();
     }
     
 	@Override
@@ -38,9 +46,9 @@ public class BillServlet extends HttpServlet {
 	    resp.setContentType("text/html");
 
 	    if (req.getQueryString() == null)
-	        displayForm(resp);
+	        this.displayForm(resp);
 	    else
-	        displayBill(req, resp);
+	        this.displayBill(req, resp);
     }
 
 	/**
@@ -50,8 +58,10 @@ public class BillServlet extends HttpServlet {
 	 */
 	private void displayForm(HttpServletResponse resp) throws IOException {
 
-		for (int i = 0; i < products.size(); i++) {
-			Product product = products.get(i);
+		Product product = null;
+		
+		for (int i = 0; i < this.products.size(); i++) {
+			product = this.products.get(i);
             resp.getWriter().println("<b>" + i + " - " + product.getName() + "</b> : " + product.getPrice() + "<br/>" +
             					     product.getDescription() + "<br/><br/>");
 		}
